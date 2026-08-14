@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://shixiang.jack-sun.com/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <video:video>
+      <video:thumbnail_loc>https://shixiang.jack-sun.com/assets/video/shixiang-concept-film-poster.jpg</video:thumbnail_loc>
+      <video:title>拾响概念短片｜让散落的声音回到它该在的位置</video:title>
+      <video:description>59 秒认识拾响：为影视创作者打造的本地音效管理器、AI 自然语言搜索与声音工作台。</video:description>
+      <video:content_loc>https://shixiang.jack-sun.com/assets/video/shixiang-concept-film.mp4</video:content_loc>
+      <video:duration>59</video:duration>
+      <video:publication_date>2026-08-14</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
   </url>
   <url>
     <loc>https://shixiang.jack-sun.com/guide/</loc>

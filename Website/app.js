@@ -11,6 +11,9 @@
   const downloadCountdown = document.querySelector("[data-download-countdown]");
   const downloadCancel = document.querySelector("[data-download-cancel]");
   const transitionCopyStatus = document.querySelector("[data-transition-copy-status]");
+  const conceptFilm = document.querySelector("[data-concept-film]");
+  const conceptFilmPlay = conceptFilm?.querySelector("[data-film-play]");
+  const conceptFilmVideo = conceptFilm?.querySelector("[data-film-video]");
   let downloadCountdownTimer;
   let pendingDownloadURL;
   let downloadTrigger;
@@ -140,6 +143,30 @@
     } catch {
       showToast(`提取码：${config.baiduPanCode}`);
     }
+  });
+
+  conceptFilmPlay?.addEventListener("click", () => {
+    if (!conceptFilm || !conceptFilmVideo) return;
+    const useMobileVideo = window.matchMedia("(max-width: 700px)").matches;
+    const source = useMobileVideo
+      ? conceptFilmVideo.dataset.srcMobile
+      : conceptFilmVideo.dataset.srcDesktop;
+    if (!conceptFilmVideo.src && source) {
+      conceptFilmVideo.src = source;
+      conceptFilmVideo.load();
+    }
+    conceptFilm.setAttribute("aria-busy", "true");
+    conceptFilmVideo.hidden = false;
+    requestAnimationFrame(() => conceptFilm.classList.add("is-playing"));
+    conceptFilmVideo.addEventListener("loadeddata", () => {
+      conceptFilm.removeAttribute("aria-busy");
+    }, { once: true });
+    window.setTimeout(() => {
+      if (conceptFilm.classList.contains("is-playing")) conceptFilmPlay.hidden = true;
+    }, 190);
+    conceptFilmVideo.play().catch(() => {
+      conceptFilm.removeAttribute("aria-busy");
+    });
   });
 
   const header = document.querySelector("[data-header]");
