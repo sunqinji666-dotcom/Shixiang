@@ -72,4 +72,5 @@ body.download-transition-open{overflow:hidden}
 @keyframes workbench-playhead{0%{transform:translate3d(-105px,0,0);opacity:0}8%,92%{opacity:1}100%{transform:translate3d(260px,0,0);opacity:0}}
 @media(max-width:920px){.workbench-track{grid-template-columns:42px 1fr auto}.workbench-wave{grid-column:1/-1}.workbench-tools{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.workbench-card{min-height:560px!important}.workbench-visual{min-height:340px;padding:12px}.workbench-track{grid-template-columns:38px minmax(0,1fr);gap:11px;padding:11px}.workbench-track time{grid-column:1/-1;text-align:right}.workbench-tools{grid-template-columns:1fr}.workbench-tools span{justify-content:flex-start;padding-inline:12px}}
+@supports(content-visibility:auto){main>section:not(.hero){content-visibility:auto;contain-intrinsic-size:auto 900px}.site-footer{content-visibility:auto;contain-intrinsic-size:auto 180px}}
 @media(prefers-reduced-motion:reduce){.workbench-wave::after{animation:none;left:42%;opacity:.8}}

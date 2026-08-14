@@ -4,9 +4,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0910">
-  <meta name="description" content="拾响 1.0 完整使用教程：安装、导入音效库、AI 自然语言搜索、试听、声音工作台、Final Cut Pro 交付与资料库维护。">
-  <title>拾响使用教程 · 从安装到创作交付</title>
-  <link rel="stylesheet" href="guide.css?v=1.0.1">
+  <meta name="description" content="拾响完整图文教程：从 macOS 安装、导入音效库，到本地 AI 自然语言搜索、试听、声音工作台、Final Cut Pro 拖拽交付与资料库维护。">
+  <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+  <meta name="author" content="Jacksun">
+  <title>拾响使用教程｜macOS 音效管理、AI 搜索与 Final Cut Pro 工作流</title>
+  <link rel="canonical" href="https://shixiang.jack-sun.com/guide/">
+  <link rel="icon" type="image/png" sizes="64x64" href="../assets/favicon-64.png">
+  <link rel="apple-touch-icon" sizes="192x192" href="../assets/icon-192.png">
+  <link rel="manifest" href="../site.webmanifest">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:site_name" content="拾响">
+  <meta property="og:title" content="拾响完整使用教程｜从安装到创作交付">
+  <meta property="og:description" content="14 章 Retina 实机图解，完整讲清安装、资料库、AI 搜索、声音工作台与 Final Cut Pro 交付。">
+  <meta property="og:url" content="https://shixiang.jack-sun.com/guide/">
+  <meta property="og:image" content="https://shixiang.jack-sun.com/guide/assets/01-main-build109.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="拾响完整使用教程">
+  <meta name="twitter:description" content="从第一次打开，到把声音拖进 Final Cut Pro 时间线。">
+  <meta name="twitter:image" content="https://shixiang.jack-sun.com/guide/assets/01-main-build109.webp">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@graph":[{"@type":"TechArticle","@id":"https://shixiang.jack-sun.com/guide/#article","headline":"拾响完整使用教程：从安装到创作交付","description":"拾响 macOS 音效管理器的完整图文教程，涵盖安装、资料库、本地 AI 搜索、声音工作台和 Final Cut Pro 交付。","url":"https://shixiang.jack-sun.com/guide/","mainEntityOfPage":"https://shixiang.jack-sun.com/guide/","inLanguage":"zh-CN","dateModified":"2026-08-14","image":"https://shixiang.jack-sun.com/guide/assets/01-main-build109.webp","author":{"@type":"Person","name":"Jacksun","url":"https://www.jack-sun.com/"},"publisher":{"@type":"Organization","name":"拾响","url":"https://shixiang.jack-sun.com/"}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"拾响","item":"https://shixiang.jack-sun.com/"},{"@type":"ListItem","position":2,"name":"使用教程","item":"https://shixiang.jack-sun.com/guide/"}]}]}
+  </script>
+  <style>
+    :root{color-scheme:dark;--bg:#09080d;--text:#f8f5ff;--muted:#aaa4b6;--dim:#736c7c;--violet:#8d63ff;--gold:#efb768;--line:rgba(255,255,255,.105);--shell:min(1240px,calc(100vw - 48px))}*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;min-width:320px;background:radial-gradient(circle at 50% -12%,rgba(115,66,200,.17),transparent 30%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","PingFang SC","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}.guide-shell{width:var(--shell);margin-inline:auto}.skip-link{position:fixed;transform:translateY(-150%)}.guide-header{position:sticky;z-index:100;top:0;border-bottom:1px solid var(--line);background:rgba(9,8,13,.82);backdrop-filter:blur(22px)}.header-inner{display:flex;min-height:70px;align-items:center;justify-content:space-between;gap:20px}.guide-brand{display:flex;align-items:center;gap:10px}.guide-brand b{font-size:15px;letter-spacing:.14em}.guide-brand>span:last-child{padding-left:10px;border-left:1px solid var(--line);color:var(--muted);font-size:12px}.guide-mark{display:flex;width:38px;height:38px;align-items:center;justify-content:center;gap:3px;border:1px solid rgba(239,183,104,.2);border-radius:11px;background:linear-gradient(145deg,rgba(130,84,211,.28),rgba(14,12,19,.92))}.guide-mark i{display:block;width:3px;border-radius:8px;background:linear-gradient(#9b6dff,#f1b777)}.guide-mark i:nth-child(1),.guide-mark i:nth-child(5){height:11px}.guide-mark i:nth-child(2),.guide-mark i:nth-child(4){height:19px}.guide-mark i:nth-child(3){height:27px}.header-actions{display:flex;align-items:center;gap:18px}.header-actions a,.header-actions button{border:0;background:none;color:var(--muted);font-size:12px}.header-download{padding:9px 15px!important;border:1px solid rgba(150,111,255,.4)!important;border-radius:999px;background:rgba(116,73,207,.15)!important;color:#fff!important}.guide-hero{padding:110px 0 95px;border-bottom:1px solid var(--line);background:radial-gradient(circle at 75% 30%,rgba(112,68,205,.18),transparent 30%)}.hero-grid{display:grid;grid-template-columns:1.18fr .82fr;align-items:center;gap:90px}.hero-kicker{display:flex;align-items:center;gap:9px;color:var(--gold);font:700 10px ui-monospace,monospace;letter-spacing:.18em}.hero-kicker span{width:7px;height:7px;border-radius:50%;background:var(--gold)}.guide-hero h1{margin:22px 0 0;font-size:clamp(48px,6vw,76px);font-weight:580;letter-spacing:-.055em;line-height:1.08}.guide-hero p{max-width:720px;margin:25px 0 0;color:var(--muted);font-size:17px;line-height:1.9}.hero-actions{display:flex;gap:12px;margin-top:32px}.hero-actions a{display:inline-flex;min-height:48px;align-items:center;justify-content:center;padding:0 21px;border:1px solid var(--line);border-radius:999px;font-size:13px;font-weight:650}.primary-action{background:linear-gradient(105deg,#704aff,#6579ff 60%,#c17f93)}.hero-status{padding:28px;border:1px solid var(--line);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}.status-title{margin-bottom:12px;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.15em}.status-row{display:grid;grid-template-columns:1fr 1.15fr auto;align-items:center;gap:10px;padding:15px 0;border-bottom:1px solid var(--line)}.status-row strong{font-size:12px}.status-row span{color:var(--muted);font-size:11px}.status-row i{padding:5px 8px;border-radius:999px;background:rgba(103,201,139,.1);color:#82dea4;font-size:9px;font-style:normal}.hero-status small{display:block;margin-top:16px;color:var(--dim);font-size:10px;line-height:1.7}.guide-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:64px}
+    @media(max-width:1050px){.hero-grid{grid-template-columns:1fr;gap:45px}.guide-layout{grid-template-columns:1fr}.guide-sidebar{display:none}}
+    @media(max-width:700px){:root{--shell:calc(100vw - 28px)}.guide-header{position:relative}.header-inner{min-height:64px}.header-actions>a:first-child,.header-actions button{display:none}.guide-hero{padding:75px 0 68px}.guide-hero h1{font-size:42px}.guide-hero p{font-size:15px}.hero-actions{flex-direction:column}.hero-actions a{width:100%}.status-row{grid-template-columns:1fr auto}.status-row span{grid-column:1/-1;grid-row:2}}
+  </style>
+  <link rel="preload" href="guide.css?v=2.0.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="guide.css?v=2.0.0"></noscript>
 </head>
 <body>
   <a class="skip-link" href="#guide-main">跳到说明正文</a>
@@ -92,7 +118,7 @@
         </div>
         <figure class="shot-card light-shot">
           <button class="shot-open" type="button" data-lightbox="assets/00-dmg-install-build109.webp" aria-label="放大安装画面"></button>
-          <img loading="eager" fetchpriority="high" decoding="async" src="assets/00-dmg-install-build109.webp" alt="拾响 Build 109 DMG 安装背景，提示拖入 Applications" width="1520" height="960">
+          <img loading="lazy" fetchpriority="low" decoding="async" src="assets/00-dmg-install-build109.webp" alt="拾响 Build 109 DMG 安装背景，提示拖入 Applications" width="1520" height="960">
           <figcaption><b>安装盘画面</b><span>左侧是拾响 App，右侧是 Applications 文件夹；按箭头方向拖动。</span></figcaption>
         </figure>
         <div class="steps-grid">
@@ -383,6 +409,6 @@
     <img loading="lazy" decoding="async" alt="">
   </div>
   <button class="back-top" type="button" data-back-top aria-label="返回顶部">↑</button>
-  <script src="guide.js?v=1.0.1"></script>
+  <script>requestAnimationFrame(()=>requestAnimationFrame(()=>{const s=document.createElement("script");s.src="guide.js?v=2.0.0";document.body.append(s)}));</script>
 </body>
 </html>

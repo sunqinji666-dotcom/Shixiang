@@ -1,0 +1,14 @@
+{
+  "name": "拾响 Shixiang",
+  "short_name": "拾响",
+  "description": "macOS 音效管理器、本地 AI 搜索与声音工作台",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09080d",
+  "theme_color": "#09080d",
+  "icons": [
+    {"src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
