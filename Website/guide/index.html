@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0910">
+  <meta name="description" content="拾响 1.0 完整使用教程：安装、导入音效库、AI 自然语言搜索、试听、声音工作台、Final Cut Pro 交付与资料库维护。">
+  <title>拾响使用教程 · 从安装到创作交付</title>
+  <link rel="stylesheet" href="guide.css?v=1.0.1">
+</head>
+<body>
+  <a class="skip-link" href="#guide-main">跳到说明正文</a>
+  <header class="guide-header">
+    <div class="guide-shell header-inner">
+      <a class="guide-brand" href="../" aria-label="返回拾响官网">
+        <span class="guide-mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <b>拾响</b><span>使用教程</span>
+      </a>
+      <div class="header-actions">
+        <a href="../">产品首页</a>
+        <button type="button" data-print>打印 / 存为 PDF</button>
+        <a class="header-download" href="../#download">下载 1.0</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="guide-hero">
+    <div class="guide-shell hero-grid">
+      <div>
+        <div class="hero-kicker"><span></span>官方完整手册 · 对应 1.0.0 Build 109</div>
+        <h1>从第一次打开，<br>到把声音拖进时间线。</h1>
+        <p>这不是功能清单，而是一套可以照着操作的完整说明。每一张软件画面都来自刚刚构建的 Build 109 实机界面，重点功能另有局部特写。</p>
+        <div class="hero-actions">
+          <a class="primary-action" href="#quick-start">5 分钟快速开始</a>
+          <a class="secondary-action" href="#ai-search">直接看 AI 搜索</a>
+        </div>
+      </div>
+      <div class="hero-status" aria-label="系统兼容说明">
+        <div class="status-title">先看系统兼容</div>
+        <div class="status-row"><strong>macOS 14.0+</strong><span>全部非 AI 功能</span><i>可用</i></div>
+        <div class="status-row featured"><strong>macOS 26.2+</strong><span>本地 AI 自然语言搜索</span><i>完整</i></div>
+        <div class="status-row muted"><strong>Intel Mac</strong><span>当前版本仅支持 Apple Silicon</span><i>不支持</i></div>
+        <small>低版本系统可以安装和使用资料库、普通搜索、试听、整理、声音工作台与剪辑软件交付；只有 AI 自然语言搜索不可用。</small>
+      </div>
+    </div>
+  </section>
+
+  <div class="guide-shell guide-layout">
+    <aside class="guide-sidebar" aria-label="说明书目录">
+      <div class="sidebar-label">目录</div>
+      <nav data-guide-nav>
+        <a href="#quick-start">01 · 快速开始</a>
+        <a href="#install">02 · 下载与安装</a>
+        <a href="#first-launch">03 · 第一次打开</a>
+        <a href="#interface">04 · 认识主界面</a>
+        <a href="#library">05 · 导入与管理资料库</a>
+        <a href="#search">06 · 普通搜索与筛选</a>
+        <a href="#ai-search">07 · AI 自然语言搜索</a>
+        <a href="#audition">08 · 试听与播放工作台</a>
+        <a href="#workbench">09 · 声音工作台</a>
+        <a href="#organize">10 · 整理与相似声音</a>
+        <a href="#delivery">11 · 拖入剪辑软件</a>
+        <a href="#maintenance">12 · 体检、备份与恢复</a>
+        <a href="#shortcuts">13 · 快捷键</a>
+        <a href="#faq">14 · 常见问题</a>
+      </nav>
+      <div class="sidebar-version"><span>当前手册</span><strong>Build 109</strong><small>更新于 2026-08-14</small></div>
+    </aside>
+
+    <main id="guide-main" class="guide-main">
+      <section class="guide-section first" id="quick-start">
+        <div class="section-number">01</div>
+        <div class="section-heading"><span>QUICK START</span><h2>5 分钟完成第一次使用</h2><p>如果你只想马上开始，先完成下面五步；后面的章节再解释每个细节。</p></div>
+        <ol class="fast-path">
+          <li><b>安装</b><span>打开 DMG，把“拾响”拖进 Applications。</span></li>
+          <li><b>导入</b><span>点击左下角“导入音效包”，选择一个完整音效文件夹。</span></li>
+          <li><b>寻找</b><span>直接输入文件名；macOS 26.2+ 还可以打开 AI，用一句话描述画面。</span></li>
+          <li><b>试听</b><span>点击列表播放键或波形，使用底部播放栏精确定位。</span></li>
+          <li><b>交付</b><span>拖住列表左侧手柄或底部声音卡片，放入 Final Cut Pro 时间线。</span></li>
+        </ol>
+        <div class="note good"><b>不用配置环境</b><p>拾响已把需要的运行环境放进 App。不要另外安装 Python、Homebrew、Xcode 或 AI 模型。</p></div>
+      </section>
+
+      <section class="guide-section" id="install">
+        <div class="section-number">02</div>
+        <div class="section-heading"><span>INSTALLATION</span><h2>下载、安装与第一次安全确认</h2><p>安装过程只有一次拖拽。App 本身不包含音效库，赠送的 5 万+ 附加音效库在下载分享中单独提供。</p></div>
+        <div class="compat-table" role="table" aria-label="拾响系统兼容表">
+          <div class="compat-head" role="row"><b>设备与系统</b><b>普通功能</b><b>本地 AI</b></div>
+          <div role="row"><span>Apple Silicon · macOS 14.0–26.1</span><i class="yes">可用</i><i class="limited">不可用</i></div>
+          <div role="row"><span>Apple Silicon · macOS 26.2+</span><i class="yes">可用</i><i class="yes">可用</i></div>
+          <div role="row"><span>Intel Mac</span><i class="no">不支持</i><i class="no">不支持</i></div>
+        </div>
+        <figure class="shot-card light-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/00-dmg-install-build109.webp" aria-label="放大安装画面"></button>
+          <img loading="eager" fetchpriority="high" decoding="async" src="assets/00-dmg-install-build109.webp" alt="拾响 Build 109 DMG 安装背景，提示拖入 Applications" width="1520" height="960">
+          <figcaption><b>安装盘画面</b><span>左侧是拾响 App，右侧是 Applications 文件夹；按箭头方向拖动。</span></figcaption>
+        </figure>
+        <div class="steps-grid">
+          <article><i>1</i><h3>打开安装盘</h3><p>双击下载得到的 <code>拾响-1.0.0-Build109.dmg</code>。</p></article>
+          <article><i>2</i><h3>拖入应用程序</h3><p>把“拾响.app”拖到右侧 Applications，等待复制完成。</p></article>
+          <article><i>3</i><h3>从应用程序打开</h3><p>以后都从 Finder 的“应用程序”目录或 Launchpad 打开。</p></article>
+        </div>
+        <div class="note warn"><b>如果提示“无法验证开发者”</b><p>按住 Control 点击“拾响.app”并选择“打开”；若仍被阻止，进入“系统设置 → 隐私与安全性”，点击“仍要打开”。无需关闭系统安全功能。</p></div>
+      </section>
+
+      <section class="guide-section" id="first-launch">
+        <div class="section-number">03</div>
+        <div class="section-heading"><span>FIRST LAUNCH</span><h2>第一次打开，会发生什么</h2><p>启动页停留约 3–4 秒，拾响同时准备本地资料库。已有资料库会直接恢复；真正空库才会出现导入引导。</p></div>
+        <div class="flow-line" aria-label="首次启动流程">
+          <span>品牌开屏</span><i>→</i><span>本地准备</span><i>→</i><span>空库引导</span><i>→</i><span>扫描进度</span><i>→</i><span>声音列表</span>
+        </div>
+        <figure class="shot-card retina-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/06-brand-splash-authentic-build109.webp" aria-label="放大拾响真实品牌开屏"></button>
+          <img loading="lazy" decoding="async" src="assets/06-brand-splash-authentic-build109.webp" alt="拾响 Build 109 启动约 1.9 秒时的 Retina 真实品牌开屏，含应用图标、拾响名称、你的终极音效管理软件标语与底部动态声波" width="2720" height="1640">
+          <figcaption><b>Build 109 真实品牌开屏</b><span>在程序启动约 1.9 秒时实机捕捉：Logo、拾响名称、标语与动态声波已经完整显现。</span></figcaption>
+        </figure>
+        <figure class="shot-card retina-shot compact-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/07-quick-guide-build109.webp" aria-label="放大首次快速引导"></button>
+          <img loading="lazy" decoding="async" src="assets/07-quick-guide-build109.webp" alt="拾响 Build 109 Retina 首次快速引导" width="2720" height="1640">
+          <figcaption><b>首次快速引导</b><span>三步看懂导入、试听整理和 Final Cut Pro 交付；底部同时列出常用快捷键。</span></figcaption>
+        </figure>
+        <div class="two-details">
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/07-guide-steps-detail-build109.webp" alt="首次引导三步卡片 Retina 特写" width="1440" height="380"><figcaption>三步卡片局部：导入完整文件夹 → 高速试听与整理 → 拖入 Final Cut Pro。</figcaption></figure>
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/07-guide-shortcuts-detail-build109.webp" alt="首次引导快捷键 Retina 特写" width="1440" height="240"><figcaption>快捷键局部：方向键、Space / K、J / L、F、⌘F、⌘R 与 ⌘⇧H。</figcaption></figure>
+        </div>
+        <div class="choice-grid">
+          <article><span>方案 A</span><h3>领取附加音效库</h3><p>点击“前往官网领取 5 万+ 附加音效库”。软件只打开拾响官网，由官网统一说明下载方式与版权边界。</p></article>
+          <article><span>方案 B</span><h3>导入自己的音效包</h3><p>选择整个文件夹，或把文件夹直接拖到空资料库页面。支持 WAV、AIFF/AIF、MP3、M4A、CAF、FLAC。</p></article>
+        </div>
+        <div class="note"><b>扫描期间不要重复导入</b><p>列表区域会显示当前进度。索引完成后，进度会直接变成声音列表；原始音频不会被移动、改名或复制。</p></div>
+      </section>
+
+      <section class="guide-section" id="interface">
+        <div class="section-number">04</div>
+        <div class="section-heading"><span>INTERFACE</span><h2>先认识这四个区域</h2><p>主界面是一张连续工作台：左侧负责范围，顶部负责寻找，中间负责选择，底部负责试听与交付。</p></div>
+        <figure class="shot-card annotated-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/01-main-build109.webp" aria-label="放大拾响主界面"></button>
+          <div class="image-stage">
+            <img loading="lazy" decoding="async" src="assets/01-main-build109.webp" alt="拾响 Build 109 主界面 Retina 全景" width="2720" height="1640">
+            <span class="marker m1">1</span><span class="marker m2">2</span><span class="marker m3">3</span><span class="marker m4">4</span>
+          </div>
+          <figcaption><b>Build 109 实机主界面</b><span>① 资源库　② 搜索与工具栏　③ 声音列表　④ 底部播放与拖拽区</span></figcaption>
+        </figure>
+        <div class="legend-grid">
+          <article><i>1</i><b>资源库</b><p>全部声音、收藏、最近导入、智能集合、音效包和原文件夹。</p></article>
+          <article><i>2</i><b>搜索与工具栏</b><p>AI 开关、搜索框、筛选、排序、刷新、批量、导入、工作台与更多操作。</p></article>
+          <article><i>3</i><b>声音列表</b><p>播放键、波形、文件名、目录、时长、格式和收藏星标。</p></article>
+          <article><i>4</i><b>播放工作台</b><p>拖出声音、前后 5 秒、播放、停止、A/B、循环、队列、频谱、进度与音量。</p></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="library">
+        <div class="section-number">05</div>
+        <div class="section-heading"><span>LOCAL LIBRARY</span><h2>导入、分类与外接硬盘</h2><p>拾响在音频上建立本地 SQLite 索引，不重新组织你的硬盘。原目录仍然是你熟悉的目录。</p></div>
+        <div class="detail-layout detail-left">
+          <figure class="detail-shot"><img loading="lazy" decoding="async" src="assets/01-sidebar-detail-build109.webp" alt="拾响资源库侧栏 Retina 局部特写" width="604" height="1640"><figcaption>资源库局部特写 · Build 109 Retina 实机</figcaption></figure>
+          <div class="detail-copy">
+            <div class="detail-item"><i>1</i><div><h3>全部声音</h3><p>每次重新启动都会从这里开始，看到当前全部可用声音。</p></div></div>
+            <div class="detail-item"><i>2</i><div><h3>收藏与最近导入</h3><p>按 <kbd>F</kbd> 收藏当前声音；“最近导入”集中显示新加入资料库的内容。</p></div></div>
+            <div class="detail-item"><i>3</i><div><h3>智能集合</h3><p>拾响按转场、环境、冲击、拟音、人声、音乐、科技等本地规则自动分类，可逐层展开。</p></div></div>
+            <div class="detail-item"><i>4</i><div><h3>音效包与原目录</h3><p>展开音效包即可按原文件夹浏览。每次启动默认折叠，界面更干净。</p></div></div>
+            <div class="detail-item"><i>5</i><div><h3>外接硬盘离线</h3><p>拔掉硬盘时索引会保留；重新连接后通常自动恢复。路径变化时到“资料库体检”重新定位。</p></div></div>
+          </div>
+        </div>
+        <div class="note good"><b>安全边界</b><p>“移除音效包”只从拾响中移除索引；“清理波形缓存”也只清理可重建缓存。两者都不会删除硬盘上的音频。</p></div>
+      </section>
+
+      <section class="guide-section" id="search">
+        <div class="section-number">06</div>
+        <div class="section-heading"><span>SEARCH & FILTER</span><h2>普通搜索、组合筛选与我的集合</h2><p>关闭 AI 时，搜索框按文件名、原目录、别名、标签和格式进行本地匹配，适合你已经知道关键词的情况。</p></div>
+        <div class="command-map">
+          <article><span>筛选</span><p>收藏、时长区间、音频格式可以叠加；“清除筛选”恢复全部。</p></article>
+          <article><span>排序</span><p>按文件名、时长、原目录或格式重新排列当前结果。</p></article>
+          <article><span>保存集合</span><p>把当前范围、关键词、格式、时长和收藏条件保存为“我的集合”。</p></article>
+          <article><span>批量</span><p>选择当前结果中的多条声音，统一收藏、取消收藏或追加标签。</p></article>
+        </div>
+        <div class="note"><b>搜索无结果时</b><p>先清除筛选，再缩短关键词。若音效包刚发生文件变动，使用“增量刷新当前音效包”；不要一开始就“彻底重建”。</p></div>
+      </section>
+
+      <section class="guide-section ai-section" id="ai-search">
+        <div class="section-number">07</div>
+        <div class="section-heading"><span>LOCAL AI SEARCH</span><h2>重点：用一句创作语言寻找声音</h2><p>AI 的价值不是替你编造声音，而是把“画面描述”拆成可检索的场景、动作、距离、情绪、材质和时长，再在你的本地资料库里排序。</p></div>
+        <div class="ai-privacy-strip"><span>Qwen 1.7B 本地模型</span><i></i><span>不上传音频</span><i></i><span>不上传搜索句子</span><i></i><span>无需联网</span></div>
+        <figure class="shot-card annotated-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/04-ai-search-build109.webp" aria-label="放大 AI 搜索实机画面"></button>
+          <div class="image-stage">
+            <img loading="lazy" decoding="async" src="assets/04-ai-search-build109.webp" alt="拾响 Build 109 AI 自然语言搜索 Retina 实机结果" width="2720" height="1640">
+            <span class="marker ai1">1</span><span class="marker ai2">2</span><span class="marker ai3">3</span>
+          </div>
+          <figcaption><b>真实搜索：雨夜，远处汽车，慢慢靠近，2 秒以内</b><span>① AI 开关与自然语言　② AI 理解摘要　③ AI 精选及继续找方向</span></figcaption>
+        </figure>
+        <div class="two-details">
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/04-ai-search-bar-detail-build109.webp" alt="AI 搜索框 Retina 局部特写" width="2070" height="220"><figcaption>搜索栏局部：金色 AI 胶囊表示已开启；右侧显示模型理解到的核心概念。</figcaption></figure>
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/04-ai-results-detail-build109.webp" alt="AI 精选结果 Retina 局部特写" width="2070" height="520"><figcaption>结果局部：AI 精选单独成组，文件仍来自本机资料库，可直接试听和拖出。</figcaption></figure>
+        </div>
+        <h3 class="subheading">怎样描述，结果更准</h3>
+        <div class="prompt-grid">
+          <article><b>场景 + 主体</b><code>雨夜，远处汽车</code><p>告诉拾响声音发生在哪里、是谁发出的。</p></article>
+          <article><b>动作 + 方向</b><code>慢慢靠近，再从右侧掠过</code><p>适合寻找运动变化、转场和镜头方向。</p></article>
+          <article><b>情绪 + 强度</b><code>克制、冷静，不要太炸</code><p>比只输入“科技音效”更接近创作意图。</p></article>
+          <article><b>时长 + 排除</b><code>2 秒以内，不要人声</code><p>用明确限制缩小结果；冲突时拾响会提示放宽。</p></article>
+        </div>
+        <div class="ai-process" aria-label="AI 搜索内部流程"><span>你的描述</span><i>→</i><span>本地模型理解一次</span><i>→</i><span>语义 + 原名 + 目录排序</span><i>→</i><span>AI 精选</span></div>
+        <div class="note warn"><b>系统版本非常重要</b><p>macOS 14.0–26.1 可以运行拾响，但 AI 按钮会提示需要 macOS 26.2+。这时继续使用普通搜索即可，其他功能不受影响。</p></div>
+        <div class="note"><b>为什么短关键词有时不启动大模型</b><p>输入“风”“雨”“UI”或清晰的资料库标签时，拾响会优先使用精确目录和本地词表，避免模型把准确词扩写得太宽；较完整的句子才交给 Qwen 理解。</p></div>
+      </section>
+
+      <section class="guide-section" id="audition">
+        <div class="section-number">08</div>
+        <div class="section-heading"><span>AUDITION</span><h2>试听、波形定位、A/B 与播放队列</h2><p>选中声音不会自动播放。点击播放键或波形开始试听，底部工作台始终跟随当前正在出声或当前选中的文件。</p></div>
+        <figure class="shot-card">
+          <button class="shot-open" type="button" data-lightbox="assets/03-playing-spectrum-build109.webp" aria-label="放大播放实机画面"></button>
+          <img loading="lazy" decoding="async" src="assets/03-playing-spectrum-build109.webp" alt="拾响 Build 109 正在播放并显示实时频谱" width="2720" height="1640">
+          <figcaption><b>Build 109 实际播放状态</b><span>列表波形实时高亮，底部显示当前声音、进度、真实频谱和音量。</span></figcaption>
+        </figure>
+        <figure class="detail-wide standalone"><img loading="lazy" decoding="async" src="assets/03-player-detail-build109.webp" alt="底部播放工作台 Retina 局部特写" width="2120" height="330"><figcaption>局部特写：拖出卡片、后退、播放、前进、停止、A/B、循环、队列、频谱、进度和音量。</figcaption></figure>
+        <div class="control-list">
+          <article><kbd>Space / K</kbd><div><b>播放或暂停</b><p>按一次开始，再按一次暂停；不会抢走搜索框正在输入的文字。</p></div></article>
+          <article><kbd>J / L</kbd><div><b>后退 / 前进 5 秒</b><p>适合快速跳过长环境声或回听瞬态。</p></div></article>
+          <article><kbd>A / B</kbd><div><b>设定片段循环</b><p>播放到起点按 A，再到终点按 B；打开循环后只试听该区间。</p></div></article>
+          <article><kbd>波形</kbd><div><b>单击或拖动定位</b><p>单击从指定位置试听；按住左右拖动时只移动指针，松手后一次跳转。</p></div></article>
+          <article><kbd>队列</kbd><div><b>连续试听候选</b><p>右键声音选择“加入试听队列”；当前声音结束后自动播放下一条。</p></div></article>
+          <article><kbd>循环</kbd><div><b>整条或 A/B 循环</b><p>未设置 A/B 时循环整条；设置后循环选定片段。</p></div></article>
+        </div>
+      </section>
+
+      <section class="guide-section" id="workbench">
+        <div class="section-number">09</div>
+        <div class="section-heading"><span>SOUND WORKBENCH</span><h2>声音工作台：整理、分析、变调与导出</h2><p>先在列表选择声音，再点击顶部“侧栏”图标。宽窗口从右侧打开，窄窗口会改为底部抽屉；边缘可拖动调整尺寸。</p></div>
+        <figure class="shot-card">
+          <button class="shot-open" type="button" data-lightbox="assets/05-workbench-build109.webp" aria-label="放大声音工作台实机画面"></button>
+          <img loading="lazy" decoding="async" src="assets/05-workbench-build109.webp" alt="拾响 Build 109 右侧声音工作台 Retina 实机画面" width="2720" height="1640">
+          <figcaption><b>声音工作台实机全景</b><span>右侧面板覆盖在工作区之上，不会改变左侧资料库和中间列表的结构。</span></figcaption>
+        </figure>
+        <div class="detail-layout">
+          <div class="detail-copy">
+            <div class="detail-item"><i>1</i><div><h3>所选声音</h3><p>查看波形、时长、格式、采样率和声道；文件离线时会给出明确提示。</p></div></div>
+            <div class="detail-item"><i>2</i><div><h3>音频智能信息</h3><p>主动分析 BPM、近似响度 LUFS、调性和音色指纹，结果保存在本机。</p></div></div>
+            <div class="detail-item"><i>3</i><div><h3>别名与标签</h3><p>给难懂文件名添加显示别名和标签；“本地智能整理建议”不会修改原文件。</p></div></div>
+            <div class="detail-item"><i>4</i><div><h3>调性与变调</h3><p>音乐或有音高的声音可分析调性，也可直接在 -12 到 +12 半音之间调整。</p></div></div>
+            <div class="detail-item"><i>5</i><div><h3>对比试听与生成副本</h3><p>在原音/变调之间切换试听，确认后导出新的 24-bit WAV；原音频永不覆盖。</p></div></div>
+          </div>
+          <figure class="detail-shot"><img loading="lazy" decoding="async" src="assets/05-workbench-detail-build109.webp" alt="声音工作台右侧面板 Retina 局部特写" width="760" height="1640"><figcaption>工作台局部特写 · Build 109 Retina 实机</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="guide-section" id="organize">
+        <div class="section-number">10</div>
+        <div class="section-heading"><span>ORGANIZE & COMPARE</span><h2>相似声音、智能命名与批量整理</h2><p>这些能力都只读原音频，把结果写入拾响自己的索引。</p></div>
+        <div class="feature-manual-grid">
+          <article><span>相似声音与变体</span><h3>从一个声音继续找</h3><p>选中声音后，在“更多操作”打开。结果综合同目录编号、远近/强弱命名、语义、时长、BPM、调性和音色指纹。</p></article>
+          <article><span>声音理解中心</span><h3>建立本地音色指纹</h3><p>按频段、明暗、瞬态和动态轮廓分析，可取消并下次续跑；只保存不可还原音频的小型数字向量。</p></article>
+          <article><span>快速对比</span><h3>留下最合适的一条</h3><p><kbd>1–5</kbd> 或上下键切换，<kbd>Space</kbd> 播放，<kbd>X</kbd> 淘汰，<kbd>F</kbd> 收藏，<kbd>Return</kbd> 留下。</p></article>
+          <article><span>智能中文命名</span><h3>先预览，再应用</h3><p>显示建议、置信度和理由；只修改拾响里的别名与标签，可撤销上一次批量操作。</p></article>
+          <article><span>批量模式</span><h3>一次整理当前结果</h3><p>点击顶部清单图标，选择部分或全部结果，再批量收藏或追加标签；取消会完整回滚。</p></article>
+          <article><span>重复项处理</span><h3>隐藏，不删除</h3><p>资料库体检发现疑似重复项后，可选择保留、忽略或从主列表隐藏其余项，随时恢复。</p></article>
+        </div>
+        <figure class="shot-card retina-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/11-similar-sounds-build109.webp" aria-label="放大相似声音与变体画面"></button>
+          <img loading="lazy" decoding="async" src="assets/11-similar-sounds-build109.webp" alt="拾响 Build 109 相似声音与变体 Retina 实机画面" width="2720" height="1640">
+          <figcaption><b>相似声音与变体</b><span>以当前声音为中心，展示真实候选、接近原因、相似度和时长，可逐条试听。</span></figcaption>
+        </figure>
+        <figure class="detail-wide standalone"><img loading="lazy" decoding="async" src="assets/11-similar-results-detail-build109.webp" alt="相似声音候选列表 Retina 特写" width="1900" height="1000"><figcaption>候选局部：标签会明确说明是时长、音色、明暗、频段还是动态接近。</figcaption></figure>
+        <figure class="shot-card retina-shot compact-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/12-quick-compare-build109.webp" aria-label="放大快速对比试听画面"></button>
+          <img loading="lazy" decoding="async" src="assets/12-quick-compare-build109.webp" alt="拾响 Build 109 快速对比试听 Retina 实机画面" width="2720" height="1640">
+          <figcaption><b>快速对比试听</b><span>最多并列五条候选；数字键切换，Space 播放，X 淘汰，F 收藏，Return 留下。</span></figcaption>
+        </figure>
+        <figure class="shot-card retina-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/13-smart-naming-build109.webp" aria-label="放大智能中文命名预览"></button>
+          <img loading="lazy" decoding="async" src="assets/13-smart-naming-build109.webp" alt="拾响 Build 109 智能中文命名 Retina 实机预览" width="2720" height="1640">
+          <figcaption><b>智能中文命名预览</b><span>左侧保留原名，右侧展示建议别名、标签、置信度与理由；只有点击应用才写入拾响索引。</span></figcaption>
+        </figure>
+        <figure class="detail-wide standalone"><img loading="lazy" decoding="async" src="assets/13-naming-preview-detail-build109.webp" alt="智能命名建议列表 Retina 特写" width="1900" height="1040"><figcaption>命名局部：原文件名、建议中文名、标签、置信度和推断理由并排显示，便于逐条核对。</figcaption></figure>
+        <figure class="shot-card retina-shot compact-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/14-acoustic-center-build109.webp" aria-label="放大声音理解中心"></button>
+          <img loading="lazy" decoding="async" src="assets/14-acoustic-center-build109.webp" alt="拾响 Build 109 声音理解中心 Retina 实机画面" width="2720" height="1640">
+          <figcaption><b>声音理解中心</b><span>显示全库与当前结果的音色指纹覆盖率，可选择分析当前范围或整个资料库。</span></figcaption>
+        </figure>
+        <figure class="detail-wide standalone"><img loading="lazy" decoding="async" src="assets/14-acoustic-coverage-detail-build109.webp" alt="声音理解中心覆盖率 Retina 特写" width="1540" height="760"><figcaption>分析局部：读取频段、明暗、瞬态与动态轮廓，只保存不可逆的小型数字向量。</figcaption></figure>
+      </section>
+
+      <section class="guide-section" id="delivery">
+        <div class="section-number">11</div>
+        <div class="section-heading"><span>EDITING DELIVERY</span><h2>把声音拖入 Final Cut Pro</h2><p>拾响提供两个拖拽入口：列表最左侧的拖拽手柄，以及底部播放器最左侧的声音卡片。</p></div>
+        <div class="delivery-demo" aria-hidden="true"><div><span>≡</span><b>拾响中的声音</b></div><i>拖动</i><strong>Final Cut Pro 时间线</strong></div>
+        <figure class="shot-card retina-shot compact-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/10-fcp-diagnostic-build109.webp" aria-label="放大 Final Cut Pro 交付诊断"></button>
+          <img loading="lazy" decoding="async" src="assets/10-fcp-diagnostic-build109.webp" alt="拾响 Build 109 Final Cut Pro 交付诊断 Retina 实机画面" width="2720" height="1640">
+          <figcaption><b>Final Cut Pro 交付诊断</b><span>先自动检查源文件、格式、时长、声道、采样率和拖拽表示，再完成真实时间线烟测。</span></figcaption>
+        </figure>
+        <div class="two-details">
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/10-fcp-checks-detail-build109.webp" alt="FCP 自动交付检查 Retina 特写" width="1420" height="780"><figcaption>自动检查局部：每个项目均明确显示通过状态与技术参数。</figcaption></figure>
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/10-fcp-drag-detail-build109.webp" alt="FCP 真实时间线拖拽 Retina 特写" width="1420" height="270"><figcaption>真实拖拽局部：从音乐图标拖入空白时间线，核对名称、时长和声音，再记录结果。</figcaption></figure>
+        </div>
+        <ol class="numbered-steps">
+          <li><span>1</span><p>在拾响中选中并试听声音；需要片段时先设置 A/B。</p></li>
+          <li><span>2</span><p>按住列表拖拽手柄或底部声音卡片，不要按播放键。</p></li>
+          <li><span>3</span><p>拖到 Final Cut Pro 时间线中的目标位置，看到插入指示后松手。</p></li>
+          <li><span>4</span><p>核对文件名、时长和声音。设置 A/B 时会生成可读名称的临时片段交付。</p></li>
+        </ol>
+        <div class="note"><b>交付诊断</b><p>选中一条声音后，从“更多操作 → Final Cut Pro 交付诊断”检查文件类型、时长、声道、采样率和拖拽表示，并完成一次真实时间线拖拽。</p></div>
+      </section>
+
+      <section class="guide-section" id="maintenance">
+        <div class="section-number">12</div>
+        <div class="section-heading"><span>MAINTENANCE</span><h2>资料库体检、备份、恢复与故障处理</h2><p>从“更多操作 → 资料库体检”，或按 <kbd>⌘⇧H</kbd> 打开。大型资料库检查在后台进行，播放和搜索仍可使用。</p></div>
+        <figure class="shot-card retina-shot compact-shot">
+          <button class="shot-open" type="button" data-lightbox="assets/09-library-health-build109.webp" aria-label="放大资料库体检画面"></button>
+          <img loading="lazy" decoding="async" src="assets/09-library-health-build109.webp" alt="拾响 Build 109 资料库体检 Retina 实机结果" width="2720" height="1640">
+          <figcaption><b>真实资料库体检结果</b><span>已检查 50,770 条，集中显示缺失文件、疑似重复、波形缓存、备份与处理入口。</span></figcaption>
+        </figure>
+        <div class="two-details">
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/09-library-health-metrics-detail-build109.webp" alt="资料库体检指标 Retina 特写" width="1532" height="172"><figcaption>指标局部：已检查、缺失文件、疑似重复和波形缓存一眼可见。</figcaption></figure>
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/09-library-health-actions-detail-build109.webp" alt="资料库维护操作 Retina 特写" width="1532" height="620"><figcaption>维护局部：导出/导入备份、清理波形缓存、打开重复项处理中心。</figcaption></figure>
+        </div>
+        <div class="maintenance-table">
+          <article><b>硬盘换了位置</b><p>在体检中找到“不可访问”的音效包，点击“重新定位”，选择同一个素材文件夹的新位置。</p></article>
+          <article><b>新增或删除了素材</b><p>使用“增量刷新”；拾响复用未变化项目，只读取新增或变化的音频。</p></article>
+          <article><b>波形显示异常</b><p>在设置或体检中“清理波形缓存”，下次需要时会自动重建，不影响原音频。</p></article>
+          <article><b>想迁移资料库设置</b><p>导出资料库备份 JSON；它包含索引、收藏、别名、标签、集合和分析结果，不包含原始音频。</p></article>
+          <article><b>播放占用较多内存</b><p>设置 → 本地资料库 →“释放预加载声音”，下次试听再按需准备。</p></article>
+          <article><b>需要联系支持</b><p>设置 → 支持与更新 →“导出匿名诊断包”。它不包含音频、文件名、路径或标签。</p></article>
+        </div>
+        <h3 class="subheading">设置里的维护与隐私</h3>
+        <div class="settings-gallery">
+          <figure><img loading="lazy" decoding="async" src="assets/08-settings-general-build109.webp" alt="拾响 Build 109 常规设置 Retina 实机图" width="1240" height="1020"><figcaption>常规：版本、工作模式和联网边界。</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="assets/08-settings-library-build109.webp" alt="拾响 Build 109 本地资料库设置 Retina 实机图" width="1240" height="1020"><figcaption>本地资料库：自动监控、体检、备份与缓存维护。</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="assets/08-settings-support-build109.webp" alt="拾响 Build 109 支持与更新设置 Retina 实机图" width="1240" height="1020"><figcaption>支持与更新：匿名诊断包不包含音频、文件名或目录路径。</figcaption></figure>
+          <figure><img loading="lazy" decoding="async" src="assets/08-settings-about-build109.webp" alt="拾响 Build 109 关于页面 Retina 实机图" width="1240" height="1020"><figcaption>关于拾响：官网、版本号与 Build 109。</figcaption></figure>
+        </div>
+        <div class="two-details">
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/08-settings-maintenance-detail-build109.webp" alt="本地资料库维护按钮 Retina 特写" width="1100" height="310"><figcaption>维护按钮局部：体检、备份、清理缓存与释放预加载声音均不会修改原音频。</figcaption></figure>
+          <figure class="detail-wide"><img loading="lazy" decoding="async" src="assets/08-settings-support-detail-build109.webp" alt="匿名诊断与发布边界 Retina 特写" width="1100" height="740"><figcaption>支持局部：诊断包只包含版本、系统和数量统计；本地版不联网、不登录、不激活。</figcaption></figure>
+        </div>
+        <div class="note warn"><b>“彻底重建整个资料库索引”不是日常刷新</b><p>只有索引明显损坏或支持人员建议时才使用。它会重新扫描所有音效包，但仍不会移动、改名、删除或上传原始音频。</p></div>
+      </section>
+
+      <section class="guide-section" id="shortcuts">
+        <div class="section-number">13</div>
+        <div class="section-heading"><span>KEYBOARD</span><h2>常用快捷键总表</h2><p>文本框正在输入时，普通字母键优先用于输入，不会误触播放。</p></div>
+        <figure class="detail-wide standalone"><img loading="lazy" decoding="async" src="assets/07-guide-shortcuts-detail-build109.webp" alt="拾响快捷键 Retina 实机特写" width="1440" height="240"><figcaption>程序内置快速引导中的真实快捷键条；按 <kbd>⌘⇧/</kbd> 可随时重新打开。</figcaption></figure>
+        <div class="shortcut-table">
+          <div><kbd>↑ / ↓</kbd><span>选择上一条 / 下一条声音</span></div>
+          <div><kbd>Space / K</kbd><span>播放或暂停</span></div>
+          <div><kbd>J / L</kbd><span>后退 / 前进 5 秒</span></div>
+          <div><kbd>F</kbd><span>收藏或取消收藏当前声音</span></div>
+          <div><kbd>⌘F</kbd><span>聚焦搜索框</span></div>
+          <div><kbd>⌘I</kbd><span>导入音效包</span></div>
+          <div><kbd>⌘R</kbd><span>增量刷新当前音效包</span></div>
+          <div><kbd>⌘⇧H</kbd><span>打开资料库体检</span></div>
+          <div><kbd>⌘⇧/</kbd><span>打开使用引导与快捷键</span></div>
+          <div><kbd>⌘,</kbd><span>打开拾响设置</span></div>
+        </div>
+      </section>
+
+      <section class="guide-section" id="faq">
+        <div class="section-number">14</div>
+        <div class="section-heading"><span>TROUBLESHOOTING</span><h2>常见问题</h2><p>点击问题展开答案。</p></div>
+        <div class="faq-list">
+          <details open><summary>为什么我的 Mac 能打开拾响，却不能使用 AI？</summary><p>主程序支持 Apple Silicon + macOS 14.0 及以上；本地 AI 自然语言搜索单独要求 macOS 26.2 及以上。低版本继续使用普通搜索即可，其他功能不受影响。</p></details>
+          <details><summary>必须下载赠送的 5 万+ 音效库吗？</summary><p>不必须。你可以只安装拾响并导入自己的文件夹。赠送库是独立附加内容，具体使用授权以包内来源与授权说明为准。</p></details>
+          <details><summary>AI 会读取或上传我的音频吗？</summary><p>不会。Qwen 只用于理解你输入的搜索句子；文件名、目录、标签、语义索引和排序都在本机完成，音频不会上传。</p></details>
+          <details><summary>拔掉外接硬盘后，索引会丢吗？</summary><p>不会。拾响保留索引并显示素材不可访问；重新连接原硬盘通常自动恢复，盘符或目录变化时使用“资料库体检 → 重新定位”。</p></details>
+          <details><summary>清理缓存会删除声音吗？</summary><p>不会。波形缓存和预加载声音都是拾响自己生成的临时数据，可随时重建。原始音频始终只读。</p></details>
+          <details><summary>为什么 AI 结果不一定与句子逐字相同？</summary><p>AI 会理解场景和意图，并结合目录、别名、标签、时长与语义证据排序；结果仍来自你的本地资料库。可点击“更短、更多、更远、更近”等方向继续收窄。</p></details>
+          <details><summary>拖不进 Final Cut Pro 怎么办？</summary><p>先确认原文件在线且系统可读取，再打开“更多操作 → Final Cut Pro 交付诊断”。使用列表拖拽手柄或底部声音卡片，不要拖播放键或波形。</p></details>
+          <details><summary>怎样把收藏、标签和分析结果迁移到另一台 Mac？</summary><p>在“资料库体检”或设置的本地资料库页导出资料库备份，在另一台 Mac 导入；原音频仍需保持相同相对目录或重新定位。</p></details>
+        </div>
+      </section>
+
+      <section class="guide-end">
+        <span class="guide-mark large" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <h2>让找声音这件事，<br>重新回到创作节奏里。</h2>
+        <p>如果说明书没有解决你的问题，可以从拾响设置中导出匿名诊断包，再通过官网联系 Jacksun。</p>
+        <div><a href="../#download">下载拾响 1.0</a><a href="../#sponsor">支持拾响</a><a href="../">返回产品首页</a></div>
+      </section>
+    </main>
+  </div>
+
+  <div class="lightbox" data-lightbox-dialog hidden role="dialog" aria-modal="true" aria-label="查看大图">
+    <button type="button" data-lightbox-close aria-label="关闭大图">×</button>
+    <img loading="lazy" decoding="async" alt="">
+  </div>
+  <button class="back-top" type="button" data-back-top aria-label="返回顶部">↑</button>
+  <script src="guide.js?v=1.0.1"></script>
+</body>
+</html>

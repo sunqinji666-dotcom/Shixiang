@@ -1,0 +1,29 @@
+.build/
+.build-app/
+dist/
+.swiftpm/
+.DS_Store
+*.sqlite3
+*.sqlite3-shm
+*.sqlite3-wal
+*.dSYM/
+DerivedData/
+xcuserdata/
+versions/
+
+# Local reports and release working files
+MORNING_REPORT_*.md
+SEMANTIC_SEARCH_ACCURACY_PLAN.md
+
+# Generated marketing intermediates; keep the curated final artwork
+Marketing/concepts/bg-*.png
+Marketing/ecommerce/backgrounds/
+Marketing/build_concepts.py
+Marketing/build_ecommerce.py
+Marketing/overlay_concept_title.py
+Marketing/ecommerce-*.png
+Marketing/output/
+
+# Private deployment configuration and high-resolution capture masters
+Website/deploy/
+Website/guide-source/
