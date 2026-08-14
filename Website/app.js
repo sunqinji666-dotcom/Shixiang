@@ -14,9 +14,84 @@
   const conceptFilm = document.querySelector("[data-concept-film]");
   const conceptFilmPlay = conceptFilm?.querySelector("[data-film-play]");
   const conceptFilmVideo = conceptFilm?.querySelector("[data-film-video]");
+  const cursorJelly = document.querySelector("[data-cursor-jelly]");
   let downloadCountdownTimer;
   let pendingDownloadURL;
   let downloadTrigger;
+
+  const canUseCursorJelly = cursorJelly
+    && window.matchMedia("(hover: hover) and (pointer: fine)").matches
+    && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (canUseCursorJelly) {
+    const halfSize = 135;
+    let targetX = -halfSize;
+    let targetY = -halfSize;
+    let currentX = targetX;
+    let currentY = targetY;
+    let previousX = currentX;
+    let previousY = currentY;
+    let animationFrame = 0;
+    let isPressed = false;
+    let jellyAngle = 0;
+
+    const renderJelly = () => {
+      currentX += (targetX - currentX) * 0.16;
+      currentY += (targetY - currentY) * 0.16;
+      const velocityX = currentX - previousX;
+      const velocityY = currentY - previousY;
+      const speed = Math.min(22, Math.hypot(velocityX, velocityY));
+      const stretch = speed / 150;
+      if (speed > 0.16) jellyAngle = Math.atan2(velocityY, velocityX) * (180 / Math.PI);
+      const pressScale = isPressed ? 0.9 : 1;
+
+      cursorJelly.style.transform = `translate3d(${currentX - halfSize}px, ${currentY - halfSize}px, 0) rotate(${jellyAngle}deg) scale(${(1 + stretch) * pressScale}, ${(1 - stretch * 0.42) * pressScale})`;
+      previousX = currentX;
+      previousY = currentY;
+
+      if (Math.abs(targetX - currentX) > 0.12 || Math.abs(targetY - currentY) > 0.12 || speed > 0.12) {
+        animationFrame = window.requestAnimationFrame(renderJelly);
+      } else {
+        animationFrame = 0;
+      }
+    };
+
+    const wakeJelly = () => {
+      if (!animationFrame) animationFrame = window.requestAnimationFrame(renderJelly);
+    };
+
+    document.addEventListener("pointermove", (event) => {
+      targetX = event.clientX;
+      targetY = event.clientY;
+      if (!cursorJelly.classList.contains("is-visible")) {
+        currentX = targetX;
+        currentY = targetY;
+        previousX = targetX;
+        previousY = targetY;
+        cursorJelly.classList.add("is-visible");
+      }
+      const target = event.target instanceof Element ? event.target : null;
+      cursorJelly.classList.toggle("is-interactive", Boolean(target?.closest("a, button, video, [role='button']")));
+      wakeJelly();
+    }, { passive: true });
+
+    document.addEventListener("pointerdown", () => {
+      isPressed = true;
+      cursorJelly.classList.add("is-pressed");
+      wakeJelly();
+    }, { passive: true });
+
+    document.addEventListener("pointerup", () => {
+      isPressed = false;
+      cursorJelly.classList.remove("is-pressed");
+      wakeJelly();
+    }, { passive: true });
+
+    document.documentElement.addEventListener("mouseleave", () => {
+      cursorJelly.classList.remove("is-visible", "is-interactive", "is-pressed");
+      isPressed = false;
+    });
+  }
 
   const showToast = (message) => {
     if (!toast) return;
