@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="theme-color" content="#0b0911">
+  <title>拾响访问后台</title>
+  <link rel="icon" href="../../assets/favicon-64.png">
+  <link rel="stylesheet" href="dashboard.css?v=1.0.0">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="../../" aria-label="返回拾响官网">
+      <span class="brand-mark"><i></i><i></i><i></i><i></i><i></i></span>
+      <span><b>拾响</b><small>访问数据后台</small></span>
+    </a>
+    <div class="top-actions">
+      <span class="live-pill"><i></i><b data-live-count>0</b> 人正在访问</span>
+      <button class="icon-button" type="button" data-refresh aria-label="刷新数据" title="刷新数据">↻</button>
+    </div>
+  </header>
+
+  <main class="dashboard-shell">
+    <section class="dashboard-heading">
+      <div>
+        <span class="eyebrow">FIRST-PARTY ANALYTICS</span>
+        <h1>网站现在，<br><em>正在发生什么。</em></h1>
+        <p>匿名访客、来源、设备与真实活跃秒数。数据只保存在自己的服务器。</p>
+      </div>
+      <div class="range-control" role="group" aria-label="统计时间范围">
+        <button type="button" data-range="1d">今天</button>
+        <button type="button" data-range="7d" class="active">7 天</button>
+        <button type="button" data-range="30d">30 天</button>
+        <button type="button" data-range="90d">90 天</button>
+        <button type="button" data-range="all">全部</button>
+      </div>
+    </section>
+
+    <section class="metric-grid" aria-label="访问概览">
+      <article class="metric-card metric-primary"><span>访客</span><strong data-metric="visitors">—</strong><small>独立匿名访客</small></article>
+      <article class="metric-card"><span>访问次数</span><strong data-metric="sessions">—</strong><small>独立会话</small></article>
+      <article class="metric-card"><span>浏览量</span><strong data-metric="pageviews">—</strong><small>页面打开次数</small></article>
+      <article class="metric-card"><span>平均活跃</span><strong data-metric="avg_active_seconds">—</strong><small>可见且有操作的时间</small></article>
+      <article class="metric-card"><span>快速离开</span><strong data-metric="bounce_rate">—</strong><small>不足 10 秒且只看一页</small></article>
+    </section>
+
+    <section class="panel chart-panel">
+      <div class="panel-head"><div><span>访问趋势</span><h2>每天有多少人来到拾响</h2></div><small data-updated>等待数据</small></div>
+      <div class="chart-wrap"><svg viewBox="0 0 900 270" preserveAspectRatio="none" role="img" aria-label="访问趋势折线图" data-chart></svg></div>
+      <div class="chart-legend"><span><i class="violet"></i>访问次数</span><span><i class="gold"></i>独立访客</span></div>
+    </section>
+
+    <section class="split-grid">
+      <article class="panel">
+        <div class="panel-head"><div><span>热门内容</span><h2>大家在看什么</h2></div></div>
+        <div class="rank-list" data-top-pages><div class="empty-state">等待第一批访问数据</div></div>
+      </article>
+      <article class="panel">
+        <div class="panel-head"><div><span>访问来源</span><h2>他们从哪里来</h2></div></div>
+        <div class="rank-list" data-sources><div class="empty-state">等待第一批访问数据</div></div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head"><div><span>访问环境</span><h2>设备与系统分布</h2></div></div>
+      <div class="dimension-grid">
+        <div><h3>设备</h3><div class="bar-list" data-devices></div></div>
+        <div><h3>系统</h3><div class="bar-list" data-systems></div></div>
+        <div><h3>浏览器</h3><div class="bar-list" data-browsers></div></div>
+        <div><h3>语言</h3><div class="bar-list" data-languages></div></div>
+      </div>
+    </section>
+
+    <section class="panel session-panel">
+      <div class="panel-head"><div><span>实时明细</span><h2>最近访问会话</h2></div><div class="view-toggle"><button class="active" type="button" data-view="sessions">会话</button><button type="button" data-view="visitors">访客</button></div></div>
+      <div class="table-scroll">
+        <table>
+          <thead data-table-head></thead>
+          <tbody data-table-body></tbody>
+        </table>
+      </div>
+      <div class="privacy-note">访客编号由浏览器随机生成；IP 只能表示网络入口，不能等同于真实姓名或个人身份。统计保留 <b data-retention>180</b> 天。</div>
+    </section>
+  </main>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+  <script src="dashboard.js?v=1.0.0" defer></script>
+</body>
+</html>

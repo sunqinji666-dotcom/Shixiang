@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /analytics/
 
 Sitemap: https://shixiang.jack-sun.com/sitemap.xml
