@@ -305,8 +305,10 @@ final class AudioPlayerController: NSObject, ObservableObject {
         let accessed = url.startAccessingSecurityScopedResource()
         do {
             let playbackURL = AudioPlaybackCompatibility.resolvedURL(for: url)
-            let newPlayer = try AudioPreviewPreloader.shared.take(url: playbackURL)
-                ?? AVAudioPlayer(contentsOf: playbackURL)
+            // AVAudioPlayer is not documented as thread-safe. Creating it in the background
+            // preloader and later transferring it to the main actor can crash Core Audio on
+            // macOS 14/15. Keep the complete player lifecycle on the main actor.
+            let newPlayer = try AVAudioPlayer(contentsOf: playbackURL)
             newPlayer.delegate = self
             newPlayer.isMeteringEnabled = true
             playbackVolumeMultiplier = min(max(volumeMultiplier, 0.05), 1)
@@ -566,18 +568,11 @@ final class AudioPlayerController: NSObject, ObservableObject {
     /// Prepares visible rows off the main thread. The cache is deliberately tiny, so a
     /// 36k-item library never turns into a large memory resident audio cache.
     func preload(urls: [URL]) {
-        AudioPreviewPreloader.shared.preload(
-            urls: urls.map(AudioPlaybackCompatibility.resolvedURL(for:))
-        )
+        // Intentionally disabled: AVAudioPlayer instances must remain main-actor confined.
     }
 
     func preload(item: SoundItem, url: URL) {
-        AudioPreviewPreloader.shared.preload(
-            candidates: [AudioPreviewCandidate(
-                url: AudioPlaybackCompatibility.resolvedURL(for: url),
-                item: item
-            )]
-        )
+        // Intentionally disabled: opening on demand is stable on macOS 14/15.
     }
 
     func cancelPendingPreloads() {
@@ -607,7 +602,7 @@ final class AudioPlayerController: NSObject, ObservableObject {
     private func releaseCurrentFileAccess() {
         completionGuardTask?.cancel()
         levelMeter.stop()
-        if let oldPlayer = player, let oldURL = currentPlaybackURL {
+        if let oldPlayer = player {
             // Detach before stopping so a delayed callback from the old decoder can never
             // overwrite the transport state of the newly selected sound.
             oldPlayer.delegate = nil
@@ -616,13 +611,6 @@ final class AudioPlayerController: NSObject, ObservableObject {
                 time: oldPlayer.currentTime,
                 duration: oldPlayer.duration,
                 repeats: isLooping
-            )
-            let estimatedBytes = currentItem.map(AudioPreviewPreloadPolicy.estimatedResidentBytes)
-                ?? AudioPreviewPreloadPolicy.defaultUnknownCost
-            AudioPreviewPreloader.shared.store(
-                oldPlayer,
-                url: oldURL,
-                estimatedResidentBytes: estimatedBytes
             )
         }
         isPlaying = false
@@ -648,27 +636,38 @@ struct PreviewQueueItem: Identifiable, Hashable, Sendable {
 }
 
 extension AudioPlayerController: AVAudioPlayerDelegate {
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        guard player === self.player else { return }
-        finishPlayback()
+    nonisolated func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        let playerID = ObjectIdentifier(player)
+        Task { @MainActor [weak self] in
+            guard let self,
+                  let activePlayer = self.player,
+                  ObjectIdentifier(activePlayer) == playerID else { return }
+            self.finishPlayback()
+        }
     }
 
-    func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
-        guard player === self.player else { return }
-        clock.update(
-            time: player.currentTime,
-            duration: player.duration,
-            repeats: isLooping
-        )
-        isPlaying = false
-        guard let itemID = currentItemID else {
-            playbackIssue = nil
-            return
+    nonisolated func audioPlayerDecodeErrorDidOccur(_ player: AVAudioPlayer, error: Error?) {
+        let playerID = ObjectIdentifier(player)
+        let errorMessage = error?.localizedDescription
+        Task { @MainActor [weak self] in
+            guard let self,
+                  let activePlayer = self.player,
+                  ObjectIdentifier(activePlayer) == playerID else { return }
+            self.clock.update(
+                time: activePlayer.currentTime,
+                duration: activePlayer.duration,
+                repeats: self.isLooping
+            )
+            self.isPlaying = false
+            guard let itemID = self.currentItemID else {
+                self.playbackIssue = nil
+                return
+            }
+            self.playbackIssue = AudioPlaybackIssue(
+                itemID: itemID,
+                message: errorMessage.map { "音频解码失败：\($0)" } ?? "音频解码失败。"
+            )
         }
-        playbackIssue = AudioPlaybackIssue(
-            itemID: itemID,
-            message: error.map { "音频解码失败：\($0.localizedDescription)" } ?? "音频解码失败。"
-        )
     }
 }
 

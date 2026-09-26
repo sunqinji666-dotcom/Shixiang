@@ -1046,14 +1046,14 @@ struct LocalLibraryView: View {
 
     private var aiAccessibilityLabel: String {
         guard ShixiangSystemCompatibility.current.supportsLocalAI else {
-            return "本地 AI 搜索：需要 macOS 26.2 或更高版本"
+            return "本地 AI 搜索：需要 macOS 14.0 或更高版本"
         }
         return effectiveLocalAISearchEnabled ? "本地 AI 搜索：已开启" : "本地 AI 搜索：已关闭"
     }
 
     private var aiHelpText: String {
         guard ShixiangSystemCompatibility.current.supportsLocalAI else {
-            return "本地 AI 搜索需要 macOS 26.2 或更高版本；普通搜索仍可使用"
+            return "本地 AI 搜索需要 Apple Silicon Mac 与 macOS 14.0 或更高版本"
         }
         return effectiveLocalAISearchEnabled ? "本地 AI 搜索已开启：再次点击关闭" : "开启本地 AI 搜索"
     }

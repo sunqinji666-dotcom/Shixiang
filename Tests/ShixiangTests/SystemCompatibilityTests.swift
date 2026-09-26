@@ -3,23 +3,23 @@ import Testing
 @testable import Shixiang
 
 struct SystemCompatibilityTests {
-    @Test func appRunsFromMacOS14WhileLocalAIRequiresMacOS262() {
+    @Test func appAndBundledLocalAIRunFromMacOS14() {
+        let macOS13 = ShixiangSystemCompatibility(
+            operatingSystemVersion: .init(majorVersion: 13, minorVersion: 6, patchVersion: 9)
+        )
+        #expect(!macOS13.supportsApp)
+        #expect(!macOS13.supportsLocalAI)
+
         let macOS14 = ShixiangSystemCompatibility(
             operatingSystemVersion: .init(majorVersion: 14, minorVersion: 0, patchVersion: 0)
         )
         #expect(macOS14.supportsApp)
-        #expect(!macOS14.supportsLocalAI)
+        #expect(macOS14.supportsLocalAI)
 
-        let macOS26_1 = ShixiangSystemCompatibility(
-            operatingSystemVersion: .init(majorVersion: 26, minorVersion: 1, patchVersion: 9)
+        let macOS15 = ShixiangSystemCompatibility(
+            operatingSystemVersion: .init(majorVersion: 15, minorVersion: 0, patchVersion: 0)
         )
-        #expect(macOS26_1.supportsApp)
-        #expect(!macOS26_1.supportsLocalAI)
-
-        let macOS26_2 = ShixiangSystemCompatibility(
-            operatingSystemVersion: .init(majorVersion: 26, minorVersion: 2, patchVersion: 0)
-        )
-        #expect(macOS26_2.supportsApp)
-        #expect(macOS26_2.supportsLocalAI)
+        #expect(macOS15.supportsApp)
+        #expect(macOS15.supportsLocalAI)
     }
 }

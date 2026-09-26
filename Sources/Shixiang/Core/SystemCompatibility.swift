@@ -7,8 +7,8 @@ struct ShixiangSystemCompatibility {
         patchVersion: 0
     )
     static let minimumLocalAIVersion = OperatingSystemVersion(
-        majorVersion: 26,
-        minorVersion: 2,
+        majorVersion: 14,
+        minorVersion: 0,
         patchVersion: 0
     )
 
@@ -27,7 +27,7 @@ struct ShixiangSystemCompatibility {
     }
 
     static let localAIUnavailableMessage =
-        "本地 AI 自然语言搜索需要 macOS 26.2 或更高版本。当前系统仍可使用资料库、普通搜索、试听、整理、声音工作台和拖入剪辑软件。"
+        "本地 AI 自然语言搜索需要 Apple Silicon Mac 与 macOS 14.0 或更高版本。"
 
     private static func isAtLeast(
         _ version: OperatingSystemVersion,
